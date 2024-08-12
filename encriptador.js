@@ -13,63 +13,58 @@ const span = document.querySelector(".span");
 //`La letra "u" es convertida para "ufat"`
 
 
-function btnEncriptar(){
-    const textoEncriptado = encriptar(textArea.value);
-    mensaje.value = textoEncriptado;
-    textArea.value = "";
-    mensaje.style.backgroundImage = "none";
-    copiar.classList.remove('ocultar');
-    p.classList.add('ocultar');
-    span.classList.add('ocultar');
-
+function btnEncriptar() {
+    if (ValidarCaracteres()) {
+        const textoEncriptado = encriptar(textArea.value);
+        mensaje.value = textoEncriptado;
+        textArea.value = "";
+        mensaje.style.backgroundImage = "none";
+        copiar.classList.remove('ocultar');
+        p.classList.add('ocultar');
+        span.classList.add('ocultar');
+    } else {
+        alert("Caracteres no permitidos. Solo se permiten letras minúsculas y espacios.");
+    }
 }
 
-
-function encriptar(stringEncriptada){
+function encriptar(stringEncriptada) {
     let matrizcodigo = [["e", "enter"], ["i", "imes"], ["a", "ai"], ["o", "ober"], ["u", "ufat"]];
     stringEncriptada = stringEncriptada.toLowerCase();
 
-    for(let i = 0; i < matrizcodigo.length; i++){
-        if(stringEncriptada.includes(matrizcodigo[i][0])){ // Corregido
+    for (let i = 0; i < matrizcodigo.length; i++) {
+        if (stringEncriptada.includes(matrizcodigo[i][0])) {
             stringEncriptada = stringEncriptada.replaceAll(matrizcodigo[i][0], matrizcodigo[i][1]);
-
         }
-
     }
     return stringEncriptada;
 }
 
-
-
-function btnDesencriptar(){
-    const textoEncriptado = desencriptar(textArea.value);
-    mensaje.value = textoEncriptado;
-    textArea.value = "";
-    
+function btnDesencriptar() {
+    if (ValidarCaracteres()) {
+        const textoEncriptado = desencriptar(textArea.value);
+        mensaje.value = textoEncriptado;
+        textArea.value = "";
+    } else {
+        alert("Caracteres no permitidos. Solo se permiten letras minúsculas y espacios.");
+    }
 }
 
-
-function desencriptar(stringDesencriptada){
+function desencriptar(stringDesencriptada) {
     let matrizcodigo = [["e", "enter"], ["i", "imes"], ["a", "ai"], ["o", "ober"], ["u", "ufat"]];
     stringDesencriptada = stringDesencriptada.toLowerCase();
 
-    for(let i = 0; i < matrizcodigo.length; i++){
-        if(stringDesencriptada.includes(matrizcodigo[i][1])){ // Corregido
+    for (let i = 0; i < matrizcodigo.length; i++) {
+        if (stringDesencriptada.includes(matrizcodigo[i][1])) {
             stringDesencriptada = stringDesencriptada.replaceAll(matrizcodigo[i][1], matrizcodigo[i][0]);
-
         }
-
     }
     return stringDesencriptada;
 }
 
 function copiarTexto() {
-    // Seleccionamos el contenido del textarea
-    const mensaje = document.querySelector(".mensaje");
     mensaje.select();
     mensaje.setSelectionRange(0, 99999); // Para dispositivos móviles
 
-    // Copiamos el texto al portapapeles
     navigator.clipboard.writeText(mensaje.value)
         .then(() => {
             alert("Texto copiado al portapapeles");
@@ -79,3 +74,9 @@ function copiarTexto() {
         });
 }
 
+function ValidarCaracteres() {
+    let ValidarTexto = textArea.value;
+    let CaracteresPermitidos = /^[a-zñ\s]+$/;
+
+    return CaracteresPermitidos.test(ValidarTexto);
+}
