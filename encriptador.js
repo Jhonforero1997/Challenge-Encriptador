@@ -13,8 +13,10 @@ const span = document.querySelector(".span");
 //`La letra "u" es convertida para "ufat"`
 
 
+
 function btnEncriptar() {
-    if (ValidarCaracteres()) {
+    let validar = ValidarCaracteres();
+    if (validar) {
         const textoEncriptado = encriptar(textArea.value);
         mensaje.value = textoEncriptado;
         textArea.value = "";
@@ -22,10 +24,15 @@ function btnEncriptar() {
         copiar.classList.remove('ocultar');
         p.classList.add('ocultar');
         span.classList.add('ocultar');
-    } else {
-        alert("Caracteres no permitidos. Solo se permiten letras minúsculas y espacios.");
+    } else if(!validar) {
+        textoNoValido();
+
+        
+    }if(validar){
+        textoValido();
     }
 }
+
 
 function encriptar(stringEncriptada) {
     let matrizcodigo = [["e", "enter"], ["i", "imes"], ["a", "ai"], ["o", "ober"], ["u", "ufat"]];
@@ -40,12 +47,16 @@ function encriptar(stringEncriptada) {
 }
 
 function btnDesencriptar() {
-    if (ValidarCaracteres()) {
+    let validar = ValidarCaracteres();
+
+    if (validar) {
         const textoEncriptado = desencriptar(textArea.value);
         mensaje.value = textoEncriptado;
         textArea.value = "";
-    } else {
-        alert("Caracteres no permitidos. Solo se permiten letras minúsculas y espacios.");
+    } else if (!validar) {
+        textoNoValido();
+    }if(validar){
+        textoValido();
     }
 }
 
@@ -77,6 +88,15 @@ function copiarTexto() {
 function ValidarCaracteres() {
     let ValidarTexto = textArea.value;
     let CaracteresPermitidos = /^[a-zñ\s]+$/;
-
+    
     return CaracteresPermitidos.test(ValidarTexto);
+}
+
+function textoNoValido(){
+    document.getElementById("alerta_texto").innerText = "Caracteres no permitidos";
+    document.getElementById("alerta_texto").style.color = "red";
+}
+function textoValido(){
+    document.getElementById("alerta_texto").innerText = "Solo letras minúsculas sin acentos y sin caracteres especiales";
+    document.getElementById("alerta_texto").style.color = "#495057";
 }
