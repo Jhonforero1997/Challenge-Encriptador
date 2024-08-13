@@ -1,15 +1,24 @@
 *{
   background:#F3F5FC;
-  font-family: "Inter";
-  font-weight: 400;
-  font-size: 32px;
-  line-height: 100%;
+ 
+}
+:root {
+  --regular: 400;
+  --altolinea: 2rem;
+  --fontfamily: "Inter" sans-serif;
 }
 
+
+
 .logo{
-  padding-top: 10px;
-  margin-left: 10px;
-  width: 10%;
+  margin: 3rem 0 5rem 0;
+  
+  display: flex;
+}
+
+.header_logo {
+  gap: 10rem;
+  display: flex;
 }
 
 main{
@@ -19,13 +28,21 @@ main{
   gap: 100px;
 }
 
+.seccio1 {
+  width: 50%;
+}
+
 .text-area {
+  font-family: var(--fontfamily);
+  font-weight: var(--regular);
+  font-size: 2rem;
   resize: none;
   border: none;
   color: #0A3871;
   margin-top: 90px;
-  line-height: 1.5;
+ /*  line-height: 1px; */
   text-transform: none;
+  gap: 30px;
 }
 
 ::placeholder {color: #0A3871;}
@@ -34,17 +51,32 @@ main{
 }
 
 .mensaje{
+  font-family: var(--fontfamily);
+  font-weight: var(--regular);
+  font-size: 2rem;
   background: white;
   background-image: url("./imagenes/Muñeco.png");
   background-repeat: no-repeat;
   background-size: 50% 100%; /* Ajusta el tamaño del muñeco */
-  background-position: left center; /* Mantiene el muñeco a la izquierda */
+  background-position:  center; /* Mantiene el muñeco a la izquierda */
   border: none;
   resize: none;
   border-radius: 24px;
   color: #0A3871;
   outline: none;
 }
+
+.contenedor-alerta{
+  display: flex;
+  flex-direction: row;
+  width: 100;
+}
+
+.logo2 {
+  width: 18px;
+  height: 18px;
+}
+
 
 .mensaje {
   outline: none;
@@ -56,7 +88,10 @@ main{
   gap:30px;
 }
 
-.btn-desencriptar {
+.btn-desencriptar, .btn-encriptar, .copiar {
+  font-family: var(--fontfamily);
+  font-weight: var(--regular);
+  font-size: 2rem;
   background: #D8DFE8;
   border: 1px solid #0A3871;
   border-radius: 24px;
@@ -69,21 +104,13 @@ main{
 .btn-encriptar {
   background-color: #0A3871;
   border: 1px solid #0A3871;
-  border-radius: 24px;
   color: white;
-  cursor: pointer;
-  height: 67px;
-  width: 328px;
-}
+} 
 
-.copiar {
-  border: 1px solid #0A3871;
-  border-radius: 24px;
-  color: #0A3871;
-  cursor: pointer;
-  height: 67px;
-  width: 336px;
-}
+ .copiar {
+  color: rgb(159, 147, 147);
+  
+} 
 
 .informacion {
   color: #495057;
@@ -172,6 +199,13 @@ span{
       margin-top: 30px;
       font-size: 24px;
   }
+  .mensaje {
+    background-image: none;
+    
+  }
+  .mover-texto{
+    margin: -250px 0 0 0;
+  }
 
   .btn-desencriptar, .btn-encriptar, .copiar {
       width: 100%;
@@ -185,10 +219,10 @@ span{
   }
 
   p {
-      font-size: 16px;
+      font-size: 36px;
   }
 
   span {
-      font-size: 12px;
+      font-size: 28px;
   }
 }
